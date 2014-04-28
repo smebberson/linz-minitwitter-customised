@@ -11,7 +11,8 @@ mongoose.connect('mongodb://localhost/linzminitwitter');
 // initialize linz, without express (it will be provided)
 linz.init(app, mongoose, {
 	'admin path': '/webtop',
-	'admin title': 'Mini-twitter'
+	'admin title': 'Mini-twitter',
+	'user model': 'mtUser'
 });
 
 app.get('/', routes.home);

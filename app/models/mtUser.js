@@ -4,6 +4,8 @@ var linz = require('linz'),
 var mtUserSchema = new mongoose.Schema({
 	name:  String,
 	email: String,
+	username: String,
+	password: String,
 	bAdmin: {
 		type: Boolean,
 		default: false
@@ -19,6 +21,10 @@ mtUserSchema.plugin(linz.formtools.plugin, {
 	},
 	usePublishingDate: false,
 	usePublishingStatus: false
+});
+
+mtUserSchema.virtual('hasAdminAccess').get(function () {
+	return this.bAdmin === true;
 });
 
 var mtUser = module.exports = mongoose.model('mtUser', mtUserSchema);
